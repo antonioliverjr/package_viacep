@@ -7,6 +7,11 @@ class TestViaCep(unittest.TestCase):
             req1 = ViaCep()
             req1.GetData('4280819')
     
+    def test_verifica_quantidade_letras_cep_metodo_retorna_error(self):
+        with self.assertRaises(ValueError):
+            req1 = ViaCep()
+            req1.GetData('42b0b193')
+    
     def test_verifica_quantidade_digitos_cep_metodo_retorna_Ok(self):
         req2 = ViaCep()
         data = req2.GetData('42808193')

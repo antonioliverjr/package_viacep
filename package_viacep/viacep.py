@@ -1,4 +1,5 @@
 from __future__ import annotations
+import re
 import requests
 import json
 
@@ -18,6 +19,9 @@ class ViaCep:
 
     @classmethod
     def __SearchCep(self, cep:str):
+        '''
+        Search Zip Code = Cep in viacep.com website
+        '''
         url = f'http://www.viacep.com.br/ws/{cep}/json/'
         try:
             req = requests.get(url)
@@ -31,6 +35,10 @@ class ViaCep:
 
     @classmethod
     def GetData(self, cep:str = None):
+        '''
+        cep string contain 8 digits, accept . and -
+        Method for Zip Code search on viacep.com website
+        '''
         if cep is None and self.cep != '':
             return self.__SearchCep(self.cep)
         elif cep is None and self.cep == '':
@@ -43,5 +51,7 @@ class ViaCep:
     def __ValidCep(self, cep:str) -> str:
         cep = cep.replace('.', '').replace('-', '')
         if len(cep) != 8:
+            raise ValueError("Cep must contain 8 digits.")
+        if not re.findall('^[0-9]{8}$', cep):
             raise ValueError("Cep must contain 8 digits.")
         return cep

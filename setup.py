@@ -1,4 +1,5 @@
 from setuptools import setup, find_packages
+from package_viacep import viacep
 
 with open('README.md', 'r') as red:
     page_description = red.read()
@@ -8,7 +9,7 @@ with open('requirements.txt', 'r') as req:
 
 setup(
     name='package_viacep',
-    version='0.0.1',
+    version=viacep.__version__,
     author='Antonio Oliveira',
     author_email='antoniobatistajr@gmail.com',
     description='Utility for Brazil zip code query or validation',

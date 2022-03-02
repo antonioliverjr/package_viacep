@@ -17,7 +17,6 @@ class ViaCep:
     def cep(self, cep:str):
         self.__cep = self.__ValidCep(cep)
 
-    @classmethod
     def __SearchCep(self, cep:str):
         '''
         Search Zip Code = Cep in viacep.com website
@@ -33,7 +32,6 @@ class ViaCep:
         except Exception as ex:
             return ex
 
-    @classmethod
     def GetData(self, cep:str = None):
         '''
         cep string contain 8 digits, accept . and -
@@ -47,7 +45,6 @@ class ViaCep:
             self.cep = self.__ValidCep(cep)
             return self.__SearchCep(self.cep)
     
-    @classmethod
     def __ValidCep(self, cep:str) -> str:
         cep = cep.replace('.', '').replace('-', '')
         if len(cep) != 8:
